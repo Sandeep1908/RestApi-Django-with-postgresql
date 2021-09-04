@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+#This is the model class for student data adding into database table
 class userdata(models.Model):
     name    = models.CharField(max_length=80)
     roll    = models.IntegerField()

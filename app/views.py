@@ -28,7 +28,7 @@ class studentdata(APIView):
                             username=request.user, groups__name='student').exists()
             if user == True:
                 return Response(serializer.data)
-            return Response({'response': 'user should be student'})
+            return Response({'response': 'student user can see their data'})
 
         except Exception as e:
             print(e)
@@ -114,6 +114,6 @@ class registerApi(APIView):
 
             else:
                 return Response({'response': 'Invalid user'})
-                
+
         except Exception as e:
             print(e)
