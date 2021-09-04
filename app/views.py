@@ -14,6 +14,7 @@ class studentdata(APIView):
     authentication_classes  = [JWTAuthentication]
     permission_classes      = [IsAuthenticated]
 
+    #This method can use to see student data
     def get(self, request, formate=None, id=None):
         try:
             stu         = userdata.objects.all()
@@ -33,7 +34,7 @@ class studentdata(APIView):
         except Exception as e:
             print(e)
 
-
+ # this method helps to creat data list
     def post(self, request):
         try:
             if User.objects.filter(
@@ -49,7 +50,7 @@ class studentdata(APIView):
         except Exception as e:
             print(e)
        
-
+# This Adminuer handel to create User list in database
 class Adminuser(APIView):
     def post(self, request):
         try:
@@ -70,6 +71,12 @@ class Adminuser(APIView):
         except Exception as e:
             print(e)
 
+
+#This registerApi view help to user signup themselves to use this api
+#There is three type of user allowed only 
+# 1.Admin user
+# 2.Teacher user
+# 2.Student user
 class registerApi(APIView):
     def post(self, request):
         try:
@@ -117,3 +124,4 @@ class registerApi(APIView):
 
         except Exception as e:
             print(e)
+
