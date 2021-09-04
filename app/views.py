@@ -28,9 +28,7 @@ class studentdata(APIView):
                 serializer  = useSerializer(stu)
                 user        = User.objects.filter(
                             username=request.user, groups__name='student').exists()
-            if user == True:
-                return Response(serializer.data,status=status.HTTP_200_OK)
-            return Response({'response': 'student user can see their data'},status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data)
 
         except Exception as e:
             print(e)
@@ -40,7 +38,7 @@ class studentdata(APIView):
         try:
             if User.objects.filter(
                 username=request.user, groups__name='student').exists():
-                return Response({'response': 'student can\'n be add Data '},status=status.HTTP_401_UNAUTHORIZED)
+                return Response({'response': 'student can\'t be add data '},status=status.HTTP_401_UNAUTHORIZED)
 
             stu         = request.data
             serializer  = useSerializer(data=stu)
@@ -68,6 +66,16 @@ class AdminuserApi(APIView):
                 user.groups.add(group)
                 token=RefreshToken()
                 return Response({'id':user.id,'response':'Student user created by admin','token':str(token.access_token),})
+
+            if type.lower()=='teacher':
+                user=User(username=username)
+                user.set_password(password)
+                user.save()
+
+                group=Group.objects.get(name='teacher')
+                user.groups.add(group)
+                token=RefreshToken()
+                return Response({'id':user.id,'response':'Teacher user created by admin','token':str(token.access_token),})
         
         except Exception as e:
             print(e)
@@ -84,6 +92,10 @@ class registerApi(APIView):
             username    = request.data.get('username')
             password    = request.data.get('password')
             type        = request.data.get('type')
+
+            print(username)
+            print(password)
+            print(type)
 
             if type.lower() == 'student':
                 user = User(username=username)
