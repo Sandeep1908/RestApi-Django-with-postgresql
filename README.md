@@ -37,8 +37,19 @@ DATABASES = {
         for example:
         {"username":"demo","password":"demo","type":"student"}
         
+        
+        
+    2. For Generating token use this url
+        
+        # this gettoken url hits the tokenObtainPairView class to help generting token
+        path('gettoken/',TokenObtainPairView.as_view(),name='gettoken'),
+        
+        #this refresh url will help to regenerating our token again
+        path('refresh/',TokenRefreshView.as_view(),name='refresh'),
+    
+        
 
-    2. According to these urls to perform operations
+    3. According to these urls to perform operations
     
         #This url helps to show all data
         path('',views.studentdata.as_view()),
