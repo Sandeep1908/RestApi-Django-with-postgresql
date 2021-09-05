@@ -8,7 +8,7 @@ DATABASES = {
 
     'default': {
 
-        'ENGINE': 'django.db.backends.<databse>',
+        'ENGINE': 'django.db.backends.<database>',
 
         'NAME': '<database name>',
 
