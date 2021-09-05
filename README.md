@@ -24,7 +24,13 @@ DATABASES = {
 
 }
 
-After configure database setting please add your group in database :
+
+        
+        
+
+    HOW TO USE
+    
+    After configure database setting please add your group in database :
         a.Student
         b.Teacher
         c.Admin
@@ -32,9 +38,7 @@ After configure database setting please add your group in database :
         otherwise code won't work properly.
         
         
-
-    HOW TO USE
-    
+        
     1.There is three types of user 
         a.Admin
         b.Teacher
